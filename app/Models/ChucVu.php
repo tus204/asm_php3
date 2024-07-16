@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class ChucVu extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['ten_chuc_vu'];
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

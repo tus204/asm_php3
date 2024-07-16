@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class DanhMuc extends Model
 {
     use HasFactory;
+  
     public function getAll() {
         $listDanhMuc = DB::table('danh_mucs')->get();
         return $listDanhMuc;
@@ -28,5 +29,15 @@ class DanhMuc extends Model
     public function deleteDanhMuc($id){
         DB::table('danh_mucs')->where('id',$id)->delete();
 
+    protected $fillable = ['hinh_anh', 'ten_danh_muc', 'mo_ta', 'danh_muc_cha_id'];
+
+    public function danhMucCha()
+    {
+        return $this->belongsTo(DanhMuc::class, 'danh_muc_cha_id');
+    }
+
+    public function sanPhams()
+    {
+        return $this->hasMany(SanPham::class);
     }
 }
