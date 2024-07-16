@@ -21,6 +21,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar',
+        'phone_number',
+        'gender',
+        'chuc_vu_id',
+        'email_verified_at',
+        'remember_token',
+        'status'
     ];
 
     /**
@@ -41,4 +48,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function chucVu()
+    {
+        return $this->belongsTo(ChucVu::class);
+    }
+
+    public function donHangs()
+    {
+        return $this->hasMany(DonHang::class);
+    }
+
+    public function binhLuans()
+    {
+        return $this->hasMany(BinhLuan::class);
+    }
+
+    public function gioHang()
+    {
+        return $this->hasOne(GioHang::class);
+    }
 }
