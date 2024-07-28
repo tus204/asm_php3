@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admins\AdminController;
 use App\Http\Controllers\admins\DanhMucController;
+use App\Http\Controllers\admins\SanPhamController;
 use App\Http\Controllers\clients\ClientController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +27,4 @@ Route::get('/', [ClientController::class, 'index'])->name('clients.home');
 // Route admin home
 Route::get('/admin', [AdminController::class, 'index'])->name('admins.home');
 Route::resource('danhmuc', DanhMucController::class);
+Route::resource('sanpham',SanPhamController::class);

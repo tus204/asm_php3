@@ -4,12 +4,30 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class SanPham extends Model
 {
     use HasFactory;
 
+    public function createSp($data){
+        DB::table('san_phams')->insert($data);
+    }
+
+    public function delSp($id){
+        DB::table('san_phams')
+        ->where('id',$id)->delete();
+    }
+
+    public function editSp($id,$data){
+        DB::table('san_phams')
+        ->where('id',$id)
+        ->update($data);
+    }
+    protected $table = 'san_phams';
+
     protected $fillable = [
+
         'ten_san_pham',
         'so_luong',
         'gia_san_pham',
@@ -44,4 +62,6 @@ class SanPham extends Model
     {
         return $this->hasMany(ChiTietGioHang::class);
     }
+
+    public $timstamps = false;
 }

@@ -5,7 +5,7 @@
     <div class="card">
         <h4 class="card-header">Danh sách danh mục</h4>
         <div class="card-body">
-            <table>
+            <table class="table">
                 <thead>
                     <th>STT</th>
                     <th>Ảnh danh mục</th>
