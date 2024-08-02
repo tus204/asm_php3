@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\DanhMucController;
-use App\Http\Controllers\Admin\SanPhamController;
-use App\Http\Controllers\user\ShopController;
-use App\Http\Controllers\User\UserController;
 use App\Http\Middleware\AuthAdmin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\user\ShopController;
+use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\DanhMucController;
+use App\Http\Controllers\Admin\SanPhamController;
+use App\Http\Controllers\Client\LienHeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,9 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/shop/{slug}', [ShopController::class, 'product_detail'])->name('product.detail');
+
+Route::get('/contact', [LienHeController::class, 'page_contact'])->name('client.contact');
+Route::get('/admin/lien_hes', [LienHeController::class, 'admin_contact'])->name('admin.contact');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/account-dashboard', [UserController::class, 'index'])->name('user.index');
