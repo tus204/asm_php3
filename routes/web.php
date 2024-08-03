@@ -32,6 +32,10 @@ Route::get('/shop/{slug}', [ShopController::class, 'product_detail'])->name('pro
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/account-dashboard', [UserController::class, 'index'])->name('user.index');
+    Route::get('/detail-user/{id}',[UserController::class,'show'])->name('user.show');
+    Route::delete('/delete_user/{id}',[UserController::class,'destroy'])->name('user.destroy');
+    Route::get('/edit-user/{id}',[UserController::class,'edit'])->name('user.edit');
+    Route::put('/update_user/{id}',[UserController::class,'update'])->name('user.update');
 });
 
 Route::middleware(['auth', AuthAdmin::class])->group(function () {

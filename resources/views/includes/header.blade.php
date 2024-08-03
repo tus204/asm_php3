@@ -463,7 +463,7 @@
                 @guest
                     <div class="header-tools__item hover-container">
                         <a href="{{ route('login') }}" class="header-tools__item">
-                            <i class="fa fa-sign-in fs-3" aria-hidden="true"></i>
+                            <i class="fa fa-solid fa-user" aria-hidden="true"></i>
                         </a>
                     </div>
                 @else

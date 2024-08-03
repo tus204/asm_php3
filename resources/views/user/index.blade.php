@@ -6,16 +6,29 @@
         <section class="my-account container">
             <h2 class="page-title">My Account</h2>
             <div class="row">
-                @include('user.account-nav')
+                <div class="col-lg-3">
+                    <ul class="account-nav">
+                        <li><a href="{{ route('user.index') }}" class="menu-link menu-link_us-s">Dashboard</a></li>
+                        <li><a href="account-orders.html" class="menu-link menu-link_us-s">Orders</a></li>
+                        <li><a href="account-address.html" class="menu-link menu-link_us-s">Addresses</a></li>
+                        <li><a href="{{route('user.show',$user->id)}}" class="menu-link menu-link_us-s">Account Details</a></li>
+                        <li><a href="account-wishlist.html" class="menu-link menu-link_us-s">Wishlist</a></li>
+                        <li>
+                            <form action="{{ route('logout') }}" method="post" id="logout-form">
+                                @csrf
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" class="">
+                                    <div class="icon"><i class="icon-log-out"></i></div>
+                                    <div class="text">Logout</div>
+                                </a>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+
                 <div class="col-lg-9">
                     <div class="page-content my-account__dashboard">
-                        <p>Hello <strong>User</strong></p>
-                        <p>From your account dashboard you can view your <a class="unerline-link"
-                                href="account_orders.html">recent
-                                orders</a>, manage your <a class="unerline-link" href="account_edit_address.html">shipping
-                                addresses</a>, and <a class="unerline-link" href="account_edit.html">edit your password and
-                                account
-                                details.</a></p>
+                        <p>Hello <strong>{{$user->name}}</strong></p>
+
                     </div>
                 </div>
             </div>
