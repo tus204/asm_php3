@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BaiVietController;
 use App\Http\Controllers\Admin\DanhMucController;
 use App\Http\Controllers\Admin\SanPhamController;
+use App\Http\Controllers\User\AddressController;
 use App\Http\Controllers\User\BaiVietController as UserBaiVietController;
 use App\Http\Controllers\user\ShopController;
 use App\Http\Controllers\User\UserController;
@@ -37,6 +38,7 @@ Route::get('/post/{slug}', [UserBaiVietController::class, 'post_detail'])->name(
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/account-dashboard', [UserController::class, 'index'])->name('user.index');
+    Route::resource('/address', AddressController::class);
 });
 
 Route::middleware(['auth', AuthAdmin::class])->group(function () {
