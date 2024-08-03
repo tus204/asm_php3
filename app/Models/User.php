@@ -46,6 +46,11 @@ class User extends Authenticatable
 
     public function bai_viets()
     {
-        return $this->hasMany(bai_viets::class);
+        return $this->hasMany(BaiViet::class);
+    }
+
+    public function dia_chis()
+    {
+        return $this->hasMany(DiaChi::class);
     }
 }
