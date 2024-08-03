@@ -299,7 +299,10 @@
                         <a href="about.html" class="navigation__link">About</a>
                     </li>
                     <li class="navigation__item">
-                        <a href="contact.html" class="navigation__link">Contact</a>
+                        <a href="" class="navigation__link">Contact</a>
+                    </li>
+                    <li class="navigation__item">
+                        <a href="{{ route('post.index') }}" class="navigation__link">Post</a>
                     </li>
                 </ul>
             </div>
@@ -385,10 +388,13 @@
                         <a href="" class="navigation__link">Cart</a>
                     </li>
                     <li class="navigation__item">
-                        <a href="about.html" class="navigation__link">About</a>
+                        <a href="" class="navigation__link">About</a>
                     </li>
                     <li class="navigation__item">
-                        <a href="contact.html" class="navigation__link">Contact</a>
+                        <a href="" class="navigation__link">Contact</a>
+                    </li>
+                    <li class="navigation__item">
+                        <a href="{{ route('post.index') }}" class="navigation__link">Post</a>
                     </li>
                 </ul>
             </nav>
@@ -467,13 +473,14 @@
                         </a>
                     </div>
                 @else
-                        <a href="{{ Auth::user()->utype == 'admin' ? route('admin.index') : route('user.index') }}" class="header-tools__item">
-                            <span class="mx-2">{{ Auth::user()->name }}</span>
-                            <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <use href="#icon_user" />
-                            </svg>
-                        </a>
+                    <a href="{{ Auth::user()->utype == 'admin' ? route('admin.index') : route('user.index') }}"
+                        class="header-tools__item">
+                        <span class="mx-2">{{ Auth::user()->name }}</span>
+                        <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <use href="#icon_user" />
+                        </svg>
+                    </a>
                 @endguest
             </div>
         </div>

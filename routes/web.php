@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BaiVietController;
 use App\Http\Controllers\Admin\DanhMucController;
 use App\Http\Controllers\Admin\SanPhamController;
+use App\Http\Controllers\User\BaiVietController as UserBaiVietController;
 use App\Http\Controllers\user\ShopController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Middleware\AuthAdmin;
@@ -30,6 +32,9 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/shop/{slug}', [ShopController::class, 'product_detail'])->name('product.detail');
 
+Route::get('/posts', [UserBaiVietController::class, 'index'])->name('post.index');
+Route::get('/post/{slug}', [UserBaiVietController::class, 'post_detail'])->name('post.detail');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/account-dashboard', [UserController::class, 'index'])->name('user.index');
 });
@@ -38,6 +43,7 @@ Route::middleware(['auth', AuthAdmin::class])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::resource('admin/danh_mucs', DanhMucController::class);
     Route::resource('admin/san_phams', SanPhamController::class);
+    Route::resource('admin/bai_viets', BaiVietController::class);
 });
 
 // profile, post, product reviews

@@ -33,8 +33,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.3/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script> --}}
-    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor5.js"></script> --}}
     @stack('scripts')
 </head>
 
