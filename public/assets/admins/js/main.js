@@ -235,3 +235,14 @@
     });
 
 })(jQuery);
+
+$(function() {
+    CKEDITOR.replace('mo_ta');
+    if (typeof CKEDITOR !== 'undefined') {
+        for (var instance in CKEDITOR.instances) {
+            if (CKEDITOR.instances.hasOwnProperty(instance)) {
+                CKEDITOR.instances[instance].config.versionCheck = false;
+            }
+        }
+    }
+})
