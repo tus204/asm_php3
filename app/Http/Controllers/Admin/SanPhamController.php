@@ -49,6 +49,8 @@ class SanPhamController extends Controller
             $data['hinh_anh'] = $request->file('hinh_anh')->store('uploads/products', 'public');
         }
 
+        // dd($data['hinh_anh']);
+
         if ($request->hasFile('hinh_anh_chi_tiet')) {
             $galleryImages = [];
             $counter = 1;
@@ -98,6 +100,8 @@ class SanPhamController extends Controller
             Storage::disk('public')->delete($sanPham->hinh_anh);
             $data['hinh_anh'] = $request->file('hinh_anh')->store('uploads/products', 'public');
         }
+
+        // dd($data['hinh_anh']);
 
         if ($request->hasFile('hinh_anh_chi_tiet')) {
 

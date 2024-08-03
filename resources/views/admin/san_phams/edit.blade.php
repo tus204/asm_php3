@@ -356,7 +356,7 @@
 @push('scripts')
     <script>
         $(function() {
-            CKEDITOR.replace('mo_ta');
+            // CKEDITOR.replace('mo_ta');
             // ClassicEditor
             //     .create(document.querySelector('#mo_ta'))
             //     .catch(error => {

@@ -337,7 +337,14 @@
 @push('scripts')
     <script>
         $(function() {
-            CKEDITOR.replace('mo_ta');
+            // CKEDITOR.replace('mo_ta');
+            // if (typeof CKEDITOR !== 'undefined') {
+            //     for (var instance in CKEDITOR.instances) {
+            //         if (CKEDITOR.instances.hasOwnProperty(instance)) {
+            //             CKEDITOR.instances[instance].config.versionCheck = false;
+            //         }
+            //     }
+            // }
             // ClassicEditor
             //     .create(document.querySelector('#mo_ta'))
             //     .catch(error => {
