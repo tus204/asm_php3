@@ -238,6 +238,7 @@
 
 $(function() {
     CKEDITOR.replace('mo_ta');
+    CKEDITOR.replace('noi_dung');
     if (typeof CKEDITOR !== 'undefined') {
         for (var instance in CKEDITOR.instances) {
             if (CKEDITOR.instances.hasOwnProperty(instance)) {

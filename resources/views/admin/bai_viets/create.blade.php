@@ -124,7 +124,6 @@
 @push('scripts')
     <script>
         $(function() {
-            CKEDITOR.replace('noi_dung');
 
             $("#myFile").on("change", function(e) {
                 const photoInp = $("#myFile");
