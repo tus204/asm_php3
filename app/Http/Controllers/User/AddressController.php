@@ -83,5 +83,6 @@ class AddressController extends Controller
         $diaChi->delete();
 
         return redirect()->route('address.index')->with('success', 'Xoá nhật địa chỉ thành công');
+        dd('test');
     }
 }
