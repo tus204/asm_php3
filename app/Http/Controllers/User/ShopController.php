@@ -37,11 +37,23 @@ class ShopController extends Controller
     public function product_detail($slug)
     {
         $sanPham = SanPham::where('slug', $slug)->first();
+        $relatedProducts = SanPham::where('danh_muc_id', $sanPham->danh_muc_id)
+        ->where('slug', '!=', $slug)
+        ->get();
+        if ($relatedProducts->count() < 4) {
+            $additionalProducts = SanPham::where('danh_muc_id', $sanPham->danh_muc_id)
+                ->where('slug', '!=', $slug)
+                ->whereNotIn('id', $relatedProducts->pluck('id'))
+                ->take(4 - $relatedProducts->count())
+                ->get();
+
+            $relatedProducts = $relatedProducts->merge($additionalProducts);
+        }
 
         $galleryImages = !empty($sanPham->hinh_anh_chi_tiet) ? array_filter(explode(',', $sanPham->hinh_anh_chi_tiet)) : [];
         // dd($galleryImages);
 
-        return view('user.products.detail', compact('sanPham', 'galleryImages'));
+        return view('user.products.detail', compact('sanPham', 'galleryImages', 'relatedProducts'));
     }
 
     /**

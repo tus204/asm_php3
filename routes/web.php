@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DanhMucController;
 use App\Http\Controllers\Admin\SanPhamController;
 use App\Http\Controllers\User\AddressController;
 use App\Http\Controllers\User\BaiVietController as UserBaiVietController;
+use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\user\ShopController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Middleware\AuthAdmin;
@@ -39,6 +40,10 @@ Route::get('/post/{slug}', [UserBaiVietController::class, 'post_detail'])->name(
 Route::middleware(['auth'])->group(function () {
     Route::get('/account-dashboard', [UserController::class, 'index'])->name('user.index');
     Route::resource('/address', AddressController::class);
+
+    Route::get('/list-cart', [CartController::class, 'listCart'])->name('cart.list');
+    Route::post('/add-to-cart', [CartController::class, 'addCart'])->name('cart.add');
+    Route::post('/update-cart', [CartController::class, 'updateCart'])->name('cart.update');
 });
 
 Route::middleware(['auth', AuthAdmin::class])->group(function () {
