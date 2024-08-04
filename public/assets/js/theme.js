@@ -172,8 +172,8 @@ function pureFadeOut(e) {
 
                     document.querySelector('.cart-totals tbody tr:nth-child(1) td').textContent = `$${Math.floor(cartSubTotal)}`;
 
-                    const shippingFee = Math.floor(cartSubTotal * 0.01);
-                    document.querySelector('#free_shipping + label').textContent = `$${shippingFee}`;
+                    // const shippingFee = Math.floor(cartSubTotal * 0.01);
+                    // document.querySelector('#free_shipping + label').textContent = `$${shippingFee}`;
 
                     document.querySelector('.cart-totals tbody tr:nth-child(3) td').textContent = `$${Math.floor(cartSubTotal + shippingFee)}`;
                 }

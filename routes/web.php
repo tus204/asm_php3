@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\SanPhamController;
 use App\Http\Controllers\User\AddressController;
 use App\Http\Controllers\User\BaiVietController as UserBaiVietController;
 use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\DonHangController;
 use App\Http\Controllers\user\ShopController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Middleware\AuthAdmin;
@@ -41,9 +42,19 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/account-dashboard', [UserController::class, 'index'])->name('user.index');
     Route::resource('/address', AddressController::class);
 
+    // cart
     Route::get('/list-cart', [CartController::class, 'listCart'])->name('cart.list');
     Route::post('/add-to-cart', [CartController::class, 'addCart'])->name('cart.add');
     Route::post('/update-cart', [CartController::class, 'updateCart'])->name('cart.update');
+
+    // order
+    Route::get('/don-hang', [DonHangController::class, 'index'])->name('donhangs.index');
+    Route::get('/don-hang/create', [DonHangController::class, 'create'])->name('donhangs.create');
+    Route::post('/don-hang/store', [DonHangController::class, 'store'])->name('donhangs.store');
+    Route::get('/don-hang/show/{id}', [DonHangController::class, 'show'])->name('donhangs.show');
+    Route::put('/don-hang/update/{id}', [DonHangController::class, 'update'])->name('donhangs.update');
+
+
 });
 
 Route::middleware(['auth', AuthAdmin::class])->group(function () {
