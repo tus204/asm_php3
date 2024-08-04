@@ -387,6 +387,9 @@
                     <li class="navigation__item">
                         <a href="contact.html" class="navigation__link">Contact</a>
                     </li>
+                    <li class="navigation__item">
+                        <a href="{{ route('post.index') }}" class="navigation__link">Post </a>
+                    </li>
                 </ul>
             </nav>
 
