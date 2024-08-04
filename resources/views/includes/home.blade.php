@@ -282,8 +282,14 @@
                                                         <span class="reviews-note text-lowercase text-secondary">8k+
                                                             reviews</span>
                                                     </div>
-                                                    <a href=""><button class="btn btn-primary btn-buynow">Add to
-                                                            cart</button></a>
+                                                    <form action="{{ route('cart.add') }}" name="addtocart-form"
+                                                        method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="quantity" value="1">
+                                                        <input type="hidden" name="product_id"
+                                                            value="{{ $item->id }}">
+                                                        <button class="btn btn-primary btn-buynow">Add to cart</button>
+                                                    </form>
                                                 </div>
 
                                                 <button
@@ -319,7 +325,8 @@
                                 </div>
                                 <div class="category-banner__item-content">
                                     <h3 class="mb-0">{{ $item->ten }}</h3>
-                                    <a href="#" class="btn-link default-underline text-uppercase fw-medium">Shop
+                                    <a href="{{ route('shop.index') }}"
+                                        class="btn-link default-underline text-uppercase fw-medium">Shop
                                         Now</a>
                                 </div>
                             </div>
@@ -346,7 +353,9 @@
 
                                 <div class="pc__info position-relative">
                                     <p class="pc__category">{{ $item->danh_muc->ten }}</p>
-                                    <h6 class="pc__title text-truncate"><a href="details.html">{{ $item->ten }}</a>
+                                    <h6 class="pc__title text-truncate"><a
+                                            href="{{ route('product.detail', ['slug' => $item->slug]) }}">{{ $item->ten }}</a>
+                                        {{-- <a href="{{ route('product.detail', ['slug' => $item->slug]) }}">detail</a> --}}
                                     </h6>
                                     <div class="product-card__price d-flex">
                                         @if ($item->gia_giam)
@@ -357,29 +366,32 @@
                                             <span class="money price text-red">${{ floor($item->gia) }}</span>
                                         @endif
                                     </div>
-
-                                    <div
-                                        class="anim_appear-bottom position-absolute bottom-0 start-0 d-none d-sm-flex align-items-center bg-body">
-                                        <button
-                                            class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-add-cart js-open-aside"
-                                            data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                                        <button class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-quick-view"
-                                            data-bs-toggle="modal" data-bs-target="#quickView" title="Quick view">
-                                            <span class="d-none d-xxl-block">Quick View</span>
-                                            <span class="d-block d-xxl-none"><svg width="18" height="18"
-                                                    viewBox="0 0 18 18" fill="none"
+                                    <div class="product-card__review d-flex align-items-center justify-content-between">
+                                        <div class="d-flex">
+                                            <div class="reviews-group d-flex">
+                                                <svg class="review-star" viewBox="0 0 9 9"
                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <use href="#icon_view" />
-                                                </svg></span>
-                                        </button>
-                                        <button class="pc__btn-wl bg-transparent border-0 js-add-wishlist"
-                                            title="Add To Wishlist">
-                                            <svg width="16" height="16" viewBox="0 0 20 20" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <use href="#icon_heart" />
-                                            </svg>
-                                        </button>
+                                                    <use href="#icon_star" />
+                                                </svg>
+                                            </div>
+                                            <span class="reviews-note text-lowercase text-secondary">8k+ reviews</span>
+                                        </div>
+                                        <form action="{{ route('cart.add') }}" name="addtocart-form" method="post">
+                                            @csrf
+                                            <input type="hidden" name="quantity" value="1">
+                                            <input type="hidden" name="product_id" value="{{ $item->id }}">
+                                            <button type="submit" class="btn btn-primary btn-buynow">Add to cart</button>
+                                        </form>
                                     </div>
+
+                                    <button
+                                        class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist"
+                                        title="Add To Wishlist">
+                                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <use href="#icon_heart" />
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
                         </div>

@@ -8,6 +8,7 @@ let UomoElements = {};
 let UomoSelectors = {
     pageBackDropActiveClass: 'page-overlay_visible',
     quantityControl: '.qty-control',
+    removeCart: '.remove-cart',
     scrollToTopId: 'scrollTop',
     $pageBackDrop: document.querySelector('.page-overlay'),
     scrollWidth: window.innerWidth - document.body.clientWidth + 'px',
@@ -134,27 +135,80 @@ function pureFadeOut(e) {
                 const $reduce = $qty.querySelector('.qty-control__reduce');
                 const $increase = $qty.querySelector('.qty-control__increase');
                 const $number = $qty.querySelector('.qty-control__number');
+                const $subtotal = $qty.closest('tr').querySelector('.shopping-cart__subtotal');
+                const price = parseFloat($qty.closest('tr').querySelector('.shopping-cart__product-price').textContent.replace('$', '').replace(',', ''));
 
-                // chặn nhập số âm & kí tự không phải số
+                // Chặn nhập số âm & ký tự không phải số
                 $number.addEventListener('input', function () {
-                    $number.value = $number.value.replace(/[^1-9]/g, '');
+                    $number.value = $number.value.replace(/[^0-9]/g, '');
                     if ($number.value === '' || parseInt($number.value) < 1) {
                         $number.value = 1;
                     }
+                    updateSubtotal();
                 });
 
                 $reduce.addEventListener('click', function () {
-                    $number.value = parseInt($number.value) > 1 ? parseInt($number.value) - 1 : parseInt($number.value);
+                    $number.value = parseInt($number.value) > 1 ? parseInt($number.value) - 1 : 1;
+                    updateSubtotal();
                 });
 
                 $increase.addEventListener('click', function () {
                     $number.value = parseInt($number.value) + 1;
+                    updateSubtotal();
                 });
+
+                function updateSubtotal() {
+                    const quantity = parseInt($number.value);
+                    const subtotal = price * quantity;
+                    $subtotal.textContent = `$${Math.floor(subtotal)}`;
+                    updateCartTotals();
+                }
+
+                function updateCartTotals() {
+                    let cartSubTotal = 0;
+                    document.querySelectorAll('.shopping-cart__subtotal').forEach(function ($subtotal) {
+                        cartSubTotal += parseFloat($subtotal.textContent.replace('$', '').replace(',', ''));
+                    });
+
+                    document.querySelector('.cart-totals tbody tr:nth-child(1) td').textContent = `$${Math.floor(cartSubTotal)}`;
+
+                    const shippingFee = Math.floor(cartSubTotal * 0.01);
+                    document.querySelector('#free_shipping + label').textContent = `$${shippingFee}`;
+
+                    document.querySelector('.cart-totals tbody tr:nth-child(3) td').textContent = `$${Math.floor(cartSubTotal + shippingFee)}`;
+                }
+
+                const $removeBtn = $qty.closest('tr').querySelector(UomoSelectors.removeCart);
+                if ($removeBtn) {
+                    $removeBtn.addEventListener('click', function (event) {
+                        event.preventDefault();
+                        var $row = this.closest('tr');
+                        if ($row) {
+                            $row.remove();
+                            updateCartTotals();
+                        }
+                    });
+                }
             });
+
+            // document.querySelectorAll(UomoSelectors.removeCart).forEach(function ($removeBtn) {
+            //     $removeBtn.addEventListener('click', function (event) {
+            //         event.preventDefault();
+            //         var $row = this.closest('tr');
+            //         if ($row) {
+            //             $row.remove();
+            //             updateCartTotals();
+            //         }
+            //     });
+            // });
+
         }
 
         return QtyControl;
     })();
+
+
+
 
     UomoElements.ScrollToTop = (function () {
         function ScrollToTop() {

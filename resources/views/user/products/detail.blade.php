@@ -399,8 +399,12 @@
                                             </div>
                                             <span class="reviews-note text-lowercase text-secondary">8k+ reviews</span>
                                         </div>
-                                        <a href=""><button class="btn btn-primary btn-buynow">Add to
-                                                cart</button></a>
+                                        <form action="{{ route('cart.add') }}" name="addtocart-form" method="post">
+                                            @csrf
+                                            <input type="hidden" name="quantity" value="1">
+                                            <input type="hidden" name="product_id" value="{{ $r_sp->id }}">
+                                            <button type="submit" class="btn btn-primary btn-buynow">Add to cart</button>
+                                        </form>
                                     </div>
 
                                     <button
