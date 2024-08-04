@@ -14,7 +14,6 @@
                 <th>Email</th>
                 <th>Mô tả</th>
                 {{-- <th>Parent Category</th> --}}
-                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -25,9 +24,6 @@
                 <td>{{ $lienHe ->phone}}</td>
                 <td>{{ $lienHe ->email}}</td>
                 <td>{{ $lienHe ->describe}}</td>
-                <td>
-                    <button type="submit">Ẩn</button>
-                </td>
             </tr>
             @endforeach
             

@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\BaiVietController;
-use App\Http\Controllers\Admin\DanhMucController;
-use App\Http\Controllers\Admin\SanPhamController;
-use App\Http\Controllers\User\AddressController;
-use App\Http\Controllers\User\BaiVietController as UserBaiVietController;
-use App\Http\Controllers\user\ShopController;
-use App\Http\Controllers\User\UserController;
 use App\Http\Middleware\AuthAdmin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\user\ShopController;
+use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\User\AddressController;
+use App\Http\Controllers\Admin\BaiVietController;
+use App\Http\Controllers\Admin\DanhMucController;
+use App\Http\Controllers\Admin\SanPhamController;
+use App\Http\Controllers\Client\LienHeController;
+use App\Http\Controllers\User\BaiVietController as UserBaiVietController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,11 @@ Route::get('/shop/{slug}', [ShopController::class, 'product_detail'])->name('pro
 
 Route::get('/posts', [UserBaiVietController::class, 'index'])->name('post.index');
 Route::get('/post/{slug}', [UserBaiVietController::class, 'post_detail'])->name('post.detail');
+//Liên hệ và thông tin trang web
+Route::get('/contact', [LienHeController::class, 'index'])->name('client.contact');
+Route::post('/contact', [LienHeController::class, 'store'])->name('client.postContact');
+Route::get('/admin/lien_hes', [LienHeController::class, 'admin_contact'])->name('admin.contact');
+Route::get('/about',[LienHeController::class,'about'])->name('client.about');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/account-dashboard', [UserController::class, 'index'])->name('user.index');

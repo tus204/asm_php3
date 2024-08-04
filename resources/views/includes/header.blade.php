@@ -388,10 +388,10 @@
                         <a href="" class="navigation__link">Cart</a>
                     </li>
                     <li class="navigation__item">
-                        <a href="" class="navigation__link">About</a>
+                        <a href="{{route('client.about')}}" class="navigation__link">About</a>
                     </li>
                     <li class="navigation__item">
-                        <a href="" class="navigation__link">Contact</a>
+                        <a href="{{route('client.contact')}}" class="navigation__link">Contact</a>
                     </li>
                     <li class="navigation__item">
                         <a href="{{ route('post.index') }}" class="navigation__link">Post</a>

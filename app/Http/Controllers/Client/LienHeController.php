@@ -17,6 +17,9 @@ class LienHeController extends Controller
         return view('client.contact');
     }
 
+    public function about(){
+        return view('client.about');
+    }
     public function admin_contact(){
         $listLienHe = $this->lien_he->getListLH();
         //dd(listSanPham);
@@ -43,6 +46,6 @@ class LienHeController extends Controller
         $this->lien_he->createLH($request->all());
             return redirect()->route('client.contact');
 
-            dd('test merge'); // code xong
+            //dd('test merge'); // code xong
     }
 }
