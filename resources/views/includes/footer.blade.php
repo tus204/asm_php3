@@ -174,3 +174,25 @@
 
 <div id="scrollTop" class="visually-hidden end-0"></div>
 <div class="page-overlay"></div>
+<script>
+    (function($) {
+        $(document).ready(function() {
+            toastr.options = {
+                "progressBar": true,
+                "newestOnTop": true,
+                "positionClass": "toast-top-right",
+                "closeButton": true
+            };
+
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    toastr.error('{{ $error }}', 'Lỗi');
+                @endforeach
+            @endif
+
+            @if (Session::has('success'))
+                toastr.success('{{ Session::get('success') }}', 'Thông báo');
+            @endif
+        });
+    })(jQuery);
+</script>

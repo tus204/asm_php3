@@ -13,7 +13,24 @@ class CartController extends Controller
      */
     public function listCart()
     {
-        return view('user.carts.index');
+        // session()->put('cart', []);
+        $cart = session()->get('cart', []);
+
+        // dd($cart);
+
+        $total = 0;
+        $subTotal = 0;
+
+        foreach ($cart as $item) {
+            $subTotal += $item['gia'] * $item['so_luong'];
+        }
+
+        // $ship_fee = $subTotal * 0.01;
+        $ship_fee = 11;
+
+        $total = $subTotal + $ship_fee;
+
+        return view('user.carts.index', compact('cart', 'subTotal', 'ship_fee', 'total',));
     }
 
     /**
@@ -34,55 +51,24 @@ class CartController extends Controller
             $cart[$productId]['so_luong'] += $quantity;
         } else {
             $cart[$productId] = [
-                'ten_san_pham' => $sanPham->ten,
+                'ten' => $sanPham->ten,
                 'so_luong' => $quantity,
                 // 'gia' => isset($sanPham->gia_giam) ? $sanPham->gia_giam : $sanPham->gia,
                 'gia' => $sanPham->finalPrice(),
                 'hinh_anh' => $sanPham->hinh_anh,
+                'slug' => $sanPham->slug,
             ];
         }
-        dd($cart);
+        // dd($cart);
         session()->put('cart', $cart);
-
+        return redirect()->back()->with('success', 'Thêm vào giỏ hàng thành công');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function updateCart(Request $request) {
+        $cartNew = $request->input('cart', []);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        session()->put('cart', $cartNew);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->back()->with('success', 'Cập nhật giỏ hàng thành công');
     }
 }
