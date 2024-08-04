@@ -32,7 +32,7 @@ class SanPham extends Model
         return $this->belongsTo(DanhMuc::class, 'danh_muc_id');
     }
 
-    public function getFinalPriceAttribute()
+    public function finalPrice()
     {
         return $this->gia_giam ?? $this->gia;
     }

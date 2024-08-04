@@ -299,10 +299,7 @@
                         <a href="about.html" class="navigation__link">About</a>
                     </li>
                     <li class="navigation__item">
-                        <a href="" class="navigation__link">Contact</a>
-                    </li>
-                    <li class="navigation__item">
-                        <a href="{{ route('post.index') }}" class="navigation__link">Post</a>
+                        <a href="contact.html" class="navigation__link">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -385,16 +382,10 @@
                         <a href="{{ route('shop.index') }}" class="navigation__link">Shop</a>
                     </li>
                     <li class="navigation__item">
-                        <a href="" class="navigation__link">Cart</a>
+                        <a href="about.html" class="navigation__link">About</a>
                     </li>
                     <li class="navigation__item">
-                        <a href="" class="navigation__link">About</a>
-                    </li>
-                    <li class="navigation__item">
-                        <a href="" class="navigation__link">Contact</a>
-                    </li>
-                    <li class="navigation__item">
-                        <a href="{{ route('post.index') }}" class="navigation__link">Post</a>
+                        <a href="contact.html" class="navigation__link">Contact</a>
                     </li>
                 </ul>
             </nav>
@@ -451,19 +442,20 @@
                     </div>
                 </div>
 
-                <a href="wishlist.html" class="header-tools__item">
+                {{-- <a href="wishlist.html" class="header-tools__item">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <use href="#icon_heart" />
                     </svg>
-                </a>
+                </a> --}}
 
-                <a href="cart.html" class="header-tools__item header-tools__cart">
+                <a href="{{ route('cart.list') }}" class="header-tools__item header-tools__cart">
                     <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <use href="#icon_cart" />
                     </svg>
-                    <span class="cart-amount d-block position-absolute js-cart-items-count">3</span>
+                    <span
+                        class="cart-amount d-block position-absolute js-cart-items-count">{{ session('cart') ? count(session('cart')) : '0' }}</span>
                 </a>
 
                 @guest

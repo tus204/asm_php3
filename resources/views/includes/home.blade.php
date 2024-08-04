@@ -146,7 +146,7 @@
                                             class="w-100 h-100 object-fit-cover" alt="" />
                                     </div>
                                     <div class="text-center">
-                                        <a href="#"
+                                        <a href="{{ route('shop.index', ['danh_muc_id' => $item->id]) }}"
                                             class="menu-link fw-medium text-truncate">{{ $item->ten }}<br /></a>
                                     </div>
                                 </div>
@@ -257,7 +257,8 @@
                                             <div class="pc__info position-relative">
                                                 <p class="pc__category">{{ $item->danh_muc->ten }}</p>
                                                 <h6 class="pc__title text-truncate"><a
-                                                        href="details.html">{{ $item->ten }}</a>
+                                                        href="{{ route('product.detail', ['slug' => $item->slug]) }}">{{ $item->ten }}</a>
+                                                    {{-- <a href="{{ route('product.detail', ['slug' => $item->slug]) }}">detail</a> --}}
                                                 </h6>
                                                 <div class="product-card__price d-flex">
                                                     @if ($item->gia_giam)
@@ -269,31 +270,30 @@
                                                         <span class="money price text-red">${{ floor($item->gia) }}</span>
                                                     @endif
                                                 </div>
-
                                                 <div
-                                                    class="anim_appear-bottom position-absolute bottom-0 start-0 d-none d-sm-flex align-items-center bg-body">
-                                                    <button
-                                                        class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-add-cart js-open-aside"
-                                                        data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                                                    <button
-                                                        class="btn-link btn-link_lg me-4 text-uppercase fw-medium js-quick-view"
-                                                        data-bs-toggle="modal" data-bs-target="#quickView"
-                                                        title="Quick view">
-                                                        <span class="d-none d-xxl-block">Quick View</span>
-                                                        <span class="d-block d-xxl-none"><svg width="18"
-                                                                height="18" viewBox="0 0 18 18" fill="none"
+                                                    class="product-card__review d-flex align-items-center justify-content-between">
+                                                    <div class="d-flex">
+                                                        <div class="reviews-group d-flex">
+                                                            <svg class="review-star" viewBox="0 0 9 9"
                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                <use href="#icon_view" />
-                                                            </svg></span>
-                                                    </button>
-                                                    <button class="pc__btn-wl bg-transparent border-0 js-add-wishlist"
-                                                        title="Add To Wishlist">
-                                                        <svg width="16" height="16" viewBox="0 0 20 20"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <use href="#icon_heart" />
-                                                        </svg>
-                                                    </button>
+                                                                <use href="#icon_star" />
+                                                            </svg>
+                                                        </div>
+                                                        <span class="reviews-note text-lowercase text-secondary">8k+
+                                                            reviews</span>
+                                                    </div>
+                                                    <a href=""><button class="btn btn-primary btn-buynow">Add to
+                                                            cart</button></a>
                                                 </div>
+
+                                                <button
+                                                    class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist"
+                                                    title="Add To Wishlist">
+                                                    <svg width="16" height="16" viewBox="0 0 20 20"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <use href="#icon_heart" />
+                                                    </svg>
+                                                </button>
                                             </div>
                                         </div>
                                     @endforeach
@@ -387,7 +387,8 @@
                 </div><!-- /.row -->
 
                 <div class="text-center mt-2">
-                    <a class="btn-link btn-link_lg default-underline text-uppercase fw-medium" href="{{ route('shop.index') }}">Load
+                    <a class="btn-link btn-link_lg default-underline text-uppercase fw-medium"
+                        href="{{ route('shop.index') }}">Load
                         More</a>
                 </div>
             </section>

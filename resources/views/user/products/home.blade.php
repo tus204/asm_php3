@@ -166,9 +166,9 @@
                                                 <use href="#icon_next_sm" />
                                             </svg></span>
                                     </div>
-                                    <button
+                                    {{-- <button
                                         class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside"
-                                        data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
+                                        data-aside="cartDrawer" title="Add To Cart">Add To Cart</button> --}}
                                 </div>
 
                                 <div class="pc__info position-relative">
@@ -196,7 +196,8 @@
                                             </div>
                                             <span class="reviews-note text-lowercase text-secondary">8k+ reviews</span>
                                         </div>
-                                        <a href=""><button class="btn btn-primary btn-buynow">Buy Now</button></a>
+                                        <a href=""><button class="btn btn-primary btn-buynow">Add to
+                                                cart</button></a>
                                     </div>
 
                                     <button
@@ -260,7 +261,7 @@
                         </span>
                     @endif
                 </nav>
-                
+
             </div>
         </section>
     </main>
