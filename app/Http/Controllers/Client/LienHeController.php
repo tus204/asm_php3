@@ -42,5 +42,7 @@ class LienHeController extends Controller
         // }
         $this->lien_he->createLH($request->all());
             return redirect()->route('client.contact');
+
+            dd('test merge'); // code xong
     }
 }
